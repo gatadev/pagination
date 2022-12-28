@@ -17,7 +17,9 @@ This function will create and insert/append the elements needed to display a "pa
 let ul = document.querySelector(".student-list");
 
 function showPage() {
-  loopStudentList();
+  for (let data = 0; data <= data.length; data++) {
+    return createElement[data];
+  }
 }
 
 const createElement = function(list, page) {
@@ -34,19 +36,7 @@ const createElement = function(list, page) {
   ul.insertAdjacentHTML("beforeend", li);
 };
 showPage();
-//create loop function
-const loopStudentList = function() {
-  let startIndex = 1;
-  let endtIndex = 9;
-  var ul = document.querySelector(".student-list");
 
-  for (let startingIndex = 1; (startingIndex = ul.length); startingIndex++) {
-    while (startIndex == 1 && endtIndex == 9) {
-      createElement();
-    }
-  }
-};
-loopStudentList();
 /** 
 
 Create the `addPagination` function
