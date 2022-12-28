@@ -17,10 +17,10 @@ This function will create and insert/append the elements needed to display a "pa
 let ul = document.querySelector(".student-list");
 
 function showPage() {
-  createElement();
+  loopStudentList();
 }
 
-const createElement = function() {
+const createElement = function(list, page) {
   const li = `<li class="student-item cf">
           <div class="student-details">
             <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
@@ -31,11 +31,22 @@ const createElement = function() {
             <span class="date">Joined 12-15-2005</span>
           </div>
         </li>`;
-  ul.insertAdjacentElement("afterbegin", li);
-  
-  showPage();
+  ul.insertAdjacentHTML("beforeend", li);
 };
+showPage();
+//create loop function
+const loopStudentList = function() {
+  let startIndex = 1;
+  let endtIndex = 9;
+  var ul = document.querySelector(".student-list");
 
+  for (let startingIndex = 1; (startingIndex = ul.length); startingIndex++) {
+    while (startIndex == 1 && endtIndex == 9) {
+      createElement();
+    }
+  }
+};
+loopStudentList();
 /** 
 
 Create the `addPagination` function
