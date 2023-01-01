@@ -63,21 +63,32 @@ var linkList = document.querySelector(".link-list");
   linkList.innerHtml = "";
   // loop over the number of pages needed
   var i = 1;
-  for (var i = 1; i <= numOfPages.length; i++) {
+  for (var i = 1; i <= numOfPages; i++) {
     var button = `<li>
    
    
    
 
-   <button type="button">${numOfPages[i]}</button>
+   <button type="button">${numOfPages}</button>
    
-   linkList.insertAdjacentHTML('beforeend', button);
+   linkList.innerHTML +=button;
   
  </li>`;
     // give the first pagination button a class of "active"
-    document.querySelector(li.button)[0].className = "active";
-    
+    if (i === 0) {
+      document.querySelector(button).className = "active";
+      linkList.addEventListener("click", e => {
+        if (e.target.tagName === "BUTTON") {
+          document.querySelector(active).className = "";
+
+          e.target.className = "active";
+          e.target = textContent;
+          showPage(list, textContent);
+        }
+      });
+    }
   }
+
   // create the elements needed to display the pagination button
   // insert the above elements
 
