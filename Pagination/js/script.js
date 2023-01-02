@@ -32,7 +32,7 @@ function showPage(data, page) {
             data.picture.thumbnail
           } alt="Profile Picture">
           <h3>${data.name.first + " " + " " + data.name.last}</h3>
-          <span class="email">${data["email"]}/span>
+          <span class="email">${data["email"]}</span>
         </div>
         <div class="joined-details">
           <span class="date">Joined ${data.registered.date}</span>
@@ -54,11 +54,11 @@ function showPage(data, page) {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
-var linkList = document.querySelector(".link-list");
+
 function addPagination(list) {
   // create a variable to calculate the number of pages needed
   var numOfPages = Math.ceil(list.length / itemPerPage);
-
+  var linkList = document.querySelector(".link-list");
   // select the element with a class of `link-list` and assign it to a variable
 
   // set the innerHTML property of the variable you just created to an empty string
@@ -81,26 +81,26 @@ function addPagination(list) {
 
     // give the first pagination button a class of "active"
     if (i === 0) {
-      document.querySelector(button).className = "active";
-      button.addEventListener("click", e => {
-        if (e.target.tagName === "BUTTON") {
-          document.querySelector(active).className = "";
-
-          e.target.className = "active";
-          e.target = textContent;
-          showPage(list, textContent);
-        }
-      });
+      document.querySelector(button)[i].className = "active";
     }
+    linkList.addEventListener("click", e => {
+      if (e.target.tagName === "BUTTON") {
+        document.querySelector(e.target).className = "";
+
+        e.target.classList.add("active");
+        e.target = textContent;
+        showPage(list, textContent);
+      }
+
+      // create the elements needed to display the pagination button
+      // insert the above elements
+
+      // create an event listener on the `link-list` element
+      // if the click target is a button:
+      // remove the "active" class from the previous button
+      // add the active class to the clicked button
+      // call the showPage function passing the `list` parameter and page to display as arguments
+    });
   }
-
-  // create the elements needed to display the pagination button
-  // insert the above elements
-
-  // create an event listener on the `link-list` element
-  // if the click target is a button:
-  // remove the "active" class from the previous button
-  // add the active class to the clicked button
-  // call the showPage function passing the `list` parameter and page to display as arguments
 }
 addPagination(data);
