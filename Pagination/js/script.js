@@ -10,7 +10,6 @@ For assistance:
 */
 var studentList = document.querySelector(".student-list");
 var itemPerPage = 9;
-showPage(data, 1);
 
 function showPage(data, page) {
   // create two variables which will represent the index for the first and last student on the page
@@ -85,17 +84,16 @@ function addPagination(list) {
     div.addEventListener("click", e => {
       if (i === 0) {
         document.querySelector(button).className = "active";
-        button.textContent = "";
       }
       if (e.target.tagName === "BUTTON") {
         const grabAllButtons = document.querySelectorAll("button");
 
         grabAllButtons.forEach(button => {
-          button.classList.remove("active");
+          e.target.classList.remove("active");
           e.currentTarget.classList.add("active");
         });
         button.textContent = "";
-        showPage(list, textContent);
+        showPage(list, button);
       }
 
       // create the elements needed to display the pagination button
@@ -109,5 +107,6 @@ function addPagination(list) {
     // call the showPage function passing the `list` parameter and page to display as arguments
   }
 }
+showPage(data, 1);
 
 addPagination(data);
