@@ -1,16 +1,18 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
 var studentList = document.querySelector(".student-list");
+console.log(studentList);
 var itemPerPage = 9;
-showPage(data, 1);
+const searchFunctionality = function() {
+  const input = document.getElementById("search");
+  const button = document.querySelector("button");
+  input.type = value;
+  if (input.value === "studentList") {
+    studentList.filer(list => {
+      input.value.toLowercase();
+      input.value = "";
+    });
+  }
+  searchFunctionality();
+};
 
 function showPage(data, page) {
   // create two variables which will represent the index for the first and last student on the page
@@ -25,7 +27,7 @@ function showPage(data, page) {
   // loop over the length of the `list` parameter
 
   data.forEach((data, index) => {
-    if (index >= startIndex && index <= endIndex) {
+    if (index >= startIndex && index < endIndex) {
       const studentItem = `<li class="student-item cf">
           <div class="student-details">
           <img class="avatar" src= ${
@@ -90,15 +92,15 @@ function addPagination(list) {
       // all target will be button
       const target = event.target;
       //if taget is a button
-      if (target === "BUTTON") {
+      if (target.tagName === "BUTTON") {
         //then remove class active
         firstButton.classList.remove("active");
         //loop through all button then applied class of active to select
         //all buttons are a nodeList
         allButton.forEach(button => {
-          button.classList.add("active");
+          button.classList.remove("active");
           //call showPage function with parameters
-          showPage(list, page);
+          showPage(list, target.textContent);
         });
         //showPage(list, page);
       }
