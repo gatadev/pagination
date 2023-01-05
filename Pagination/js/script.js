@@ -1,18 +1,20 @@
 var studentList = document.querySelector(".student-list");
 console.log(studentList);
 var itemPerPage = 9;
-const searchFunctionality = function() {
-  const input = document.getElementById("search");
-  const button = document.querySelector("button");
-  input.type = value;
-  if (input.value === "studentList") {
-    studentList.filer(list => {
-      input.value.toLowercase();
-      input.value = "";
-    });
-  }
-  searchFunctionality();
-};
+const search = document.getElementById("search");
+const button = document.querySelector("button");
+
+search.addEventListener("keyup", e => {
+  let valueAsOfNow = e.target.value.toLowerCase();
+  let students = document.getElementsByTagName("h2");
+  students.forEach(student => {
+    if (student.textContent.toLowerCase().includes(valueAsOfNow)) {
+      student.parentNode.parentNode.style.display = "block";
+    } else {
+      student.parentNode.parentNode.style.display = "none";
+    }
+  });
+});
 
 function showPage(data, page) {
   // create two variables which will represent the index for the first and last student on the page
