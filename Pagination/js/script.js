@@ -3,12 +3,24 @@ console.log(studentList);
 var itemPerPage = 9;
 const search = document.getElementById("search");
 const button = document.querySelector("button");
+const getHtml = `<header class="header">
+<h2>${student}</h2>
 
+<label for="search" class="student-search">
+  <span>${data.name.first + " " + " " + data.name.last}</span>
+  <input id="search" placeholder="Search by name..." />
+  <button type="button">
+    <img src=${data.picture.thumbnail} alt="Search icon" />
+  </button>
+</label>
+</header>`;
+
+students.insertAdjacentHTML("beforeend", getHtml);
 search.addEventListener("keyup", e => {
-  let valueAsOfNow = e.target.value.toLowerCase();
+  let currentValue = e.target.value.toLowerCase();
   let students = document.getElementsByTagName("h2");
   students.forEach(student => {
-    if (student.textContent.toLowerCase().includes(valueAsOfNow)) {
+    if (student.textContent.toLowerCase().includes(currentValue)) {
       student.parentNode.parentNode.style.display = "block";
     } else {
       student.parentNode.parentNode.style.display = "none";
