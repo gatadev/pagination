@@ -1,12 +1,12 @@
 var studentList = document.querySelector(".student-list");
 const search = document.getElementById("search");
 var itemPerPage = 9;
+const header = document.querySelector(".header");
 const button = document.querySelector("button");
+
 function handleSearch() {
-  const header = document.querySelector(".header");
-  const secondHeader = document.getElementsByTagName("h2");
   const getHtml = `<label for="search" class="student-search">
-  <span>Search by name</span>
+  <span>Search By name</span>
   <input id="search" placeholder="Search by name..." />
   <button type="button">
     <img src="img/icn-search.svg" alt="Search icon" />
@@ -14,11 +14,19 @@ function handleSearch() {
 </label>`;
   header.insertAdjacentHTML("beforeend", getHtml);
 }
+handleSearch();
 search.addEventListener("keyup", e => {
-  handleSearch();
   const currentValue = e.target.value.toLowerCase();
+  data.map(data => {
+    if (header.includes(currentValue)) {
+      header.parentNode.parentNode.style.display = "block";
+    } else {
+      header.parentNode.parentNode.style.display = "none";
+    }
+  });
+
   if (currentValue === "data") {
-    data.filter(data => {
+    data.filter(getHtml => {
       return data[i];
     });
   }
