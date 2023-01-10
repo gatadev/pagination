@@ -1,47 +1,20 @@
+//Selecting student
 var studentList = document.querySelector(".student-list");
-const search = document.getElementById("search");
+///define the items number per page
 var itemPerPage = 9;
 const header = document.querySelector(".header");
 const button = document.querySelector("button");
-
-function handleSearch() {
-  const getHtml = `<label for="search" class="student-search">
-  <span>Search By name</span>
-  <input id="search" placeholder="Search by name..." />
-  <button type="button">
-    <img src="img/icn-search.svg" alt="Search icon" />
-  </button>
-</label>`;
-  header.insertAdjacentHTML("beforeend", getHtml);
-}
-handleSearch();
-search.addEventListener("keyup", e => {
-  const currentValue = e.target.value.toLowerCase();
-  data.map(data => {
-    if (header.includes(currentValue)) {
-      header.parentNode.parentNode.style.display = "block";
-    } else {
-      header.parentNode.parentNode.style.display = "none";
-    }
-  });
-
-  if (currentValue === "data") {
-    data.filter(getHtml => {
-      return data[i];
-    });
-  }
-});
+// declaring function and passing data where we will loop through and page corresponding at every data
 function showPage(data, page) {
   // create two variables which will represent the index for the first and last student on the page
 
   var startIndex = page * itemPerPage - itemPerPage;
   var endIndex = page * itemPerPage;
 
-  // select the element with a class of `student-list` and assign it to a variable
+  // setting the innerHtml of studenlist  to empty string
 
-  // set the innerHTML property of the variable you just created to an empty string
   studentList.innerHTML = "";
-  // loop over the length of the `list` parameter
+  // looping over data to get every single data
 
   data.forEach((data, index) => {
     if (index >= startIndex && index < endIndex) {
@@ -62,26 +35,15 @@ function showPage(data, page) {
   });
 }
 
-//inside the loop create a conditional to display the proper students
-// inside the conditional:
-// create the elements needed to display the student information
-// insert the above elements
-
-/*
-
-
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
+//Create the `addPagination` function
+//his function will create and insert/append the elements needed for the pagination buttons
 
 function addPagination(list) {
   // create a variable to calculate the number of pages needed
   var numOfPages = Math.ceil(list.length / itemPerPage);
 
   var linkList = document.querySelector(".link-list");
-  // select the element with a class of `link-list` and assign it to a variable
 
-  // set the innerHTML property of the variable you just created to an empty string
   linkList.innerHTML = " ";
   // loop over the number of pages needed
   var i = 1;
