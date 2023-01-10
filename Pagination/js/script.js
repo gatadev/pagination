@@ -1,17 +1,24 @@
 var studentList = document.querySelector(".student-list");
 
 var itemPerPage = 9;
+const button = document.querySelector("button");
+function handleSearch() {
+  const header = document.querySelector(".header");
+  const secondHeader = document.getElementsByTagName("h2");
+  const getHtml = `<label for="search" class="student-search">
+  <span>Search by name</span>
+  <input id="search" placeholder="Search by name..." />
+  <button type="button">
+    <img src="img/icn-search.svg" alt="Search icon" />
+  </button>
+</label>`;
+  header.insertAdjacentHTML("beforeend", getHtml);
+}
 const search = document.getElementById("search");
 search.addEventListener("keyup", e => {
   let currentValue = e.target.value.toLowerCase();
-
-  let spans = document.getElementByTagName("span");
-  spans.forEach(span => {
-    if (span.textContent.toLowerCase().includes(currentValue)) {
-      span.parentNode.parentNode.style.display = "block";
-    } else {
-      span.parentNode.parentNode.style.display = "none";
-    }
+  header.map(header => {
+    return currentValue;
   });
 });
 
