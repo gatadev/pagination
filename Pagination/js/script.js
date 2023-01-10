@@ -3,7 +3,6 @@ var studentList = document.querySelector(".student-list");
 var itemPerPage = 9;
 const button = document.querySelector("button");
 function handleSearch() {
- 
   const header = document.querySelector(".header");
   const secondHeader = document.getElementsByTagName("h2");
   const getHtml = `<label for="search" class="student-search">
