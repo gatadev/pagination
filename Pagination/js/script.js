@@ -1,5 +1,5 @@
 var studentList = document.querySelector(".student-list");
-
+const search = document.getElementById("search");
 var itemPerPage = 9;
 const button = document.querySelector("button");
 function handleSearch() {
@@ -14,15 +14,15 @@ function handleSearch() {
 </label>`;
   header.insertAdjacentHTML("beforeend", getHtml);
 }
-handleSearch();
-const search = document.getElementById("search");
 search.addEventListener("keyup", e => {
-  let currentValue = e.target.value.toLowerCase();
-  header.map(header => {
-    return currentValue;
-  });
+  handleSearch();
+  const currentValue = e.target.value.toLowerCase();
+  if (currentValue === "data") {
+    data.filter(data => {
+      return data[i];
+    });
+  }
 });
-
 function showPage(data, page) {
   // create two variables which will represent the index for the first and last student on the page
 
