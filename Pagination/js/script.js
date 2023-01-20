@@ -1,61 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Student List</title>
-    <link href="css/reset.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="page">
-      <header class="header">
-        <h2>Students</h2>
+//Selecting student
+var studentList = document.querySelector(".student-list");
+///define the items number per page
+var itemPerPage = 9;
+const header = document.querySelector(".header");
+const button = document.querySelector("button");
+// declaring function and passing data where we will loop through and page corresponding at every data
+function showPage(data, page) {
+  // create two variables which will represent the index for the first and last student on the page
 
-        <label for="search" class="student-search">
-          <span>Search by name</span>
-          <input id="search" placeholder="Search by name..." />
-          <button type="button">
-            <img src="img/icn-search.svg" alt="Search icon" />
-          </button>
-        </label>
-      </header>
+  var startIndex = page * itemPerPage - itemPerPage;
+  var endIndex = page * itemPerPage;
 
-      <ul class="student-list">
-        <!-- Dynamically insert students here
-        
-        EXAMPLE - Student list item:
+  // setting the innerHtml of studenlist  to empty string
 
-        <li class="student-item cf">
+  studentList.innerHTML = "";
+  // looping over data to get every single data
+
+  data.forEach((data, index) => {
+    if (index >= startIndex && index < endIndex) {
+      const studentItem = `<li class="student-item cf">
           <div class="student-details">
-            <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
-            <h3>Ethel Dean</h3>
-            <span class="email">ethel.dean@example.com</span>
+          <img class="avatar" src= ${
+            data.picture.thumbnail
+          } alt="Profile Picture">
+          <h3>${data.name.first + " " + " " + data.name.last}</h3>
+          <span class="email">${data["email"]}</span>
+        </div>
+        <div class="joined-details">
+          <span class="date">Joined ${data.registered.date}</span>
           </div>
-          <div class="joined-details">
-            <span class="date">Joined 12-15-2005</span>
-          </div>
-        </li>
+        </li>`;
+      studentList.insertAdjacentHTML("beforeend", studentItem);
+    }
+  });
+}
 
-      --></ul>
+//Create the `addPagination` function
+//his function will create and insert/append the elements needed for the pagination buttons
 
-      <div class="pagination">
-        <ul class="link-list">
-          <!-- Dynamically insert pagination buttons here
+function addPagination(list) {
+  // create a variable to calculate the number of pages needed
+  var numOfPages = Math.ceil(list.length / itemPerPage);
 
-          EXAMPLE - Two pagination buttons, one with active class, one without:
-            
-          <li>
-            <button type="button" class="active">1</button>
-          </li>
-          <li>
-            <button type="button">2</button>
-          </li>
-      
-        --></ul>
-      </div>
-    </div>
-    <script src="js/data.js"></script>
-    <script src="js/script.js"></script>
-  </body>
-</html>
+  var linkList = document.querySelector(".link-list");
+
+  linkList.innerHTML = " ";
+  // loop over the number of pages needed
+  var i = 1;
+  for (var i = 1; i <= numOfPages; i++) {
+    var button = `<li>
+   
+   
+   
+
+   <button type="button">${i}</button>
+   
+ 
+  
+ </li>`;
+
+    linkList.insertAdjacentHTML("beforeend", button);
+    //This will select all button in the parent div
+    const allButton = document.querySelectorAll("button");
+    //this will select the parent div
+    const div = document.querySelector(".pagination");
+    // this will select the first button
+    const firstButton = document.querySelector("button");
+    firstButton.classList.add('active');
+    //Adding eventListener to the parent div
+    div.addEventListener("click", event => {
+      // all target will be button
+      const target = event.target;
+      //if taget is a button
+      if (target.tagName === "BUTTON") {
+        //then remove class active
+        firstButton.classList.remove("active");
+        //loop through all button then applied class of active to select
+        //all buttons are a nodeList
+        allButton.forEach(button => {
+          button.classList.remove("active");
+          //call showPage function with parameters
+          
+        });
+        target.classList.add('active');
+          showPage(list, target.textContent);
+        //showPage(list, page);
+      }
+    });
+  }
+}
+
+showPage(data, 1);
+
+addPagination(data);
